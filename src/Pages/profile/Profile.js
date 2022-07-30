@@ -45,7 +45,9 @@ const schema = yup.object({
 });
 
 const Profile = () => {
-  const loginAccount = JSON.parse(localStorage.getItem('adminAccount'));
+  const {loginAccount} = useSelector(
+    (state) => state.auth
+  );
 
   const { userEdit, userIsLoading, userMessage } = useSelector(
     (state) => state.user
