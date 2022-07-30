@@ -45,14 +45,11 @@ const schema = yup.object({
 });
 
 const Profile = () => {
-
   const loginAccount = JSON.parse(localStorage.getItem('adminAccount'));
 
   const { userEdit, userIsLoading, userMessage } = useSelector(
     (state) => state.user
   );
-
-  const [input, setInput]= useState(initialValues);
 
   const [buttonTrigger, setButton]= useState(false);
 
@@ -65,18 +62,14 @@ const Profile = () => {
     dispatch(getUserDetails(loginAccount.taiKhoan));
   }, []);
 
-  useEffect(() => {
-    setInput(userEdit);
-  }, [userEdit]);
-
   const formIk = useFormik({
-    initialValues: input || initialValues,
+    initialValues: userEdit || initialValues,
     enableReinitialize: true,
     onSubmit: (value) => {
       const payload = {...value};
       dispatch(submitEditUser(payload));
       setButton(true);
-      if (input.matKhau !== payload.matKhau) setChange(true);
+      if (userEdit.matKhau !== payload.matKhau) setChange(true);
     },
     validateOnMount: true,
     validationSchema: schema
