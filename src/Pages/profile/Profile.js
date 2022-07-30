@@ -46,9 +46,7 @@ const schema = yup.object({
 
 const Profile = () => {
 
-  const { loginAccount } = useSelector(
-    (state) => state.auth
-  );
+  const loginAccount = JSON.parse(localStorage.getItem('adminAccount'));
 
   const { userEdit, userIsLoading, userMessage } = useSelector(
     (state) => state.user
@@ -68,11 +66,11 @@ const Profile = () => {
   }, []);
 
   useEffect(() => {
-    setInput({...userEdit});
+    setInput(userEdit);
   }, [userEdit]);
 
   const formIk = useFormik({
-    initialValues: input || userEdit,
+    initialValues: input || initialValues,
     enableReinitialize: true,
     onSubmit: (value) => {
       const payload = {...value};
