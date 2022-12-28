@@ -83,11 +83,11 @@ const UserAddNew = () => {
         setButton(false);
       } 
       if (typeof userMessage === "string") {
-        toast.error(`Cannot adding movie with errors \n ${userMessage}`);
+        toast.error(`Cannot adding user with errors \n ${userMessage}`);
         setButton(false);
       }
       if (userMessage === undefined) {
-        toast.error(`Cannot adding movie !!!`);
+        toast.error(`Cannot adding user !!!`);
         setButton(false);
       }
     }
